@@ -1,0 +1,10 @@
+{
+    "extends" :   "plugin:react/recommended",
+    "plugins": [
+        "html",    "react"
+      ]
+      
+}
+
+    
+  
