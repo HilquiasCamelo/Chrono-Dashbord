@@ -21,7 +21,7 @@ export function Header() {
   const isAuthenticated = validarToken(); // valida o token JWT
   const payload = token ? jwt_decode<TokenPayload>(token) : null; // decodifica o payload do token JWT
 
-  console.log(payload);
+
   return (
     <HeaderContainer>
       <img src={logoIgnite} alt="" />

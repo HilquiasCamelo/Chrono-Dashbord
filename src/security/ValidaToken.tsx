@@ -13,7 +13,7 @@ interface TokenPayload {
 export function validarToken(): boolean {
   const token = localStorage.getItem("token");
   const cookies = parseCookies();
-  
+
   const tokenWithBearer = cookies.token || null;
   if (tokenWithBearer) {
     const [bearer, token] = tokenWithBearer.split(' ');
@@ -22,20 +22,20 @@ export function validarToken(): boolean {
     }
   }
   if (token) {
-    try {
-      const decoded = jwt_decode<TokenPayload>(token);
+   try {
+        const decoded = jwt_decode<TokenPayload>(token);
 
-      if (decoded.exp < Date.now() / 1000) {
-        localStorage.removeItem("token");
-        console.log("Token expirado");
+        if (decoded.exp < Date.now() / 1000) {
+          localStorage.removeItem("token");
+          console.log("Token expirado");
+          return false;
+        }
+
+        return true;
+      } catch (error) {
+        console.log("Token inválido");
         return false;
       }
-
-      return true;
-    } catch (error) {
-      console.log("Token inválido");
-      return false;
-    }
   }
 
   console.log("Token não encontrado");
